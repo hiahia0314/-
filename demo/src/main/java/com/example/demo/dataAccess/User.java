@@ -3,8 +3,8 @@ package com.example.demo.dataAccess;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="friend")
-public class Friend {
+@Table(name= "user")
+public class User {
 
     @Id
     @Column(name = "id")

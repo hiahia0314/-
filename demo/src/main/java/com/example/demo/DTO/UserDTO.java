@@ -1,6 +1,6 @@
 package com.example.demo.DTO;
 
-public class friendDTO {
+public class UserDTO {
     private long id;
     private String name;
     private int age;
