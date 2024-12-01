@@ -28,6 +28,17 @@ public class Event {
     @Column(name="type")
     private String type;
 
+    @Column(name = "uid")
+    private long uid;
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
+
     public long getId() {
         return id;
     }

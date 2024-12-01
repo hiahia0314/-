@@ -31,6 +31,7 @@ public class EventServiceImp implements EventService {
         newEvent.setDescription(event.getDescription());
         newEvent.setTitle(event.getTitle());
         newEvent.setDate(event.getDate());
+        newEvent.setUid(event.getUid());
         Event savedEvent = eventRepository.save(newEvent);
         return savedEvent.getId();
     }
@@ -40,13 +41,8 @@ public class EventServiceImp implements EventService {
         return eventRepository.findDateByUser(UserId);
     }
     @Override
-    public void deleteEventById(Long id){
-        eventRepository.deleteById(id);
-    }
-
-    @Override
-    public void deleteAllEventsByUserId(long UserId){
-        eventRepository.deleteAllByUser(UserId);
+    public void deleteEventByUid(Long Uid){
+        eventRepository.deleteByUid(Uid);
     }
 
     @Override

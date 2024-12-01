@@ -1,11 +1,20 @@
 package com.example.demo.DTO;
 
-import java.time.LocalDateTime;
-
 public class EventDTO {
+
+    private Long uid;
     private String type;
     private String title;
     private String description;
+
+
+    public Long getUid() {
+        return this.uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     public String getType() {
         return type;

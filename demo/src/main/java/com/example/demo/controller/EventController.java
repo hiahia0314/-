@@ -23,8 +23,8 @@ public class EventController {
     }
 
     @DeleteMapping("/event/{id}")
-    public void deleteEventById(@PathVariable long id){
-        eventService.deleteEventById(id);
+    public void deleteEventByUid(@PathVariable long Uid){
+        eventService.deleteEventByUid(Uid);
     }
 
     @GetMapping("/eventDate/{id}")

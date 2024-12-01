@@ -14,9 +14,7 @@ public interface EventService {
 
     //long updateEvent(Event event,Long id);
 
-     void deleteEventById(Long id);
-
-     void deleteAllEventsByUserId(long UserId);
+     void deleteEventByUid(Long uid);
 
      List<LocalDate> findDateByUserId(long UserId);
 

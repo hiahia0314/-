@@ -12,6 +12,7 @@ public class EventConverter {
         eventDTO.setDescription(event.getDescription());
         eventDTO.setTitle(event.getTitle());
         eventDTO.setType(event.getType());
+        eventDTO.setUid(event.getUid());
         return eventDTO;
     }
     public static List<EventDTO> EventListConvert(List<Event> eventList) {

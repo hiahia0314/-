@@ -24,6 +24,11 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     boolean existsByUser(Long UserId);
 
     @Transactional
+    @Query("delete from Event x where x.uid =(?1)")
+    @Modifying
+    void deleteByUid(Long uid);
+
+    @Transactional
     @Query("SELECT distinct e.date FROM Event e WHERE e.user = (?1)")
     @Modifying
     List<LocalDate> findDateByUser(Long UserId);
