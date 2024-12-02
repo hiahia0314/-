@@ -1,14 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.DTO.EventDTO;
-import com.example.demo.Response;
-import com.example.demo.ResponseForEvent;
+import com.example.demo.response.Response;
+import com.example.demo.response.ResponseForEvent;
 import com.example.demo.dataAccess.Event;
 import com.example.demo.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController

@@ -21,23 +21,23 @@ public class UserServiceImp implements UserService {
     @Autowired
     private EventRepository eventRepository;
     @Override
-    public UserDTO getFriendById(long id) {
+    public UserDTO getFriendById(String id) {
         User user = userRepository.findById(id).orElseThrow(RuntimeException::new);
         return UserConverter.convertFriend(user);
     }
 
-    public Long addNewFriend(UserDTO UserDTO) {
+    public String addNewFriend(UserDTO UserDTO) {
         List<User> userList = userRepository.findByName(UserDTO.getName());//JPA已经帮我实现了
         if(!CollectionUtils.isEmpty(userList)){
             //throw new IllegalStateException("name: "+friendDTO.getName()+" already exists");
-            return (long) -1;
+            return null;
         }
         User user = userRepository.save(UserConverter.convertFriend(UserDTO));
         return user.getId();
     }
 
     @Override
-    public void deleteFriendById(long id) {
+    public void deleteFriendById(String id) {
         userRepository.findById(id).orElseThrow( ()-> new IllegalArgumentException("id :" + id + " not found"));
         userRepository.deleteById(id);
 
@@ -47,7 +47,7 @@ public class UserServiceImp implements UserService {
     }
     @Override
     @Transactional//回滚
-    public UserDTO updateFriendById(long id, String name, String age) {
+    public UserDTO updateFriendById(String id, String name, String age) {
 
 
         User userInDB = userRepository.findById(id).orElseThrow(RuntimeException::new);

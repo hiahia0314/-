@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.DTO.EventDTO;
-import com.example.demo.ResponseForEvent;
+import com.example.demo.response.ResponseForEvent;
 import com.example.demo.converter.EventConverter;
 import com.example.demo.dataAccess.Event;
 import com.example.demo.dataAccess.EventRepository;

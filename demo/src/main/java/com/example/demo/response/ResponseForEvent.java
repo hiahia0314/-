@@ -1,7 +1,6 @@
-package com.example.demo;
+package com.example.demo.response;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class ResponseForEvent <T>{
     private LocalDate localDate;

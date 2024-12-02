@@ -34,4 +34,11 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     List<LocalDate> findDateByUser(Long UserId);
 
     List<Event> findByDateAndUser(LocalDate date, long user);
+
+    boolean existsByUser(String id);
+
+    @Transactional
+    @Query("delete from Event x where x.id = (?1)")
+    @Modifying
+    void deleteAllByUser(String id);
 }
