@@ -10,7 +10,7 @@ import java.util.List;
 public interface EventService {
      List<EventDTO> getEventsByUserId(long UserId);
 
-     long addEvent(Event event);
+     String addEvent(Event event);
 
     //long updateEvent(Event event,Long id);
 

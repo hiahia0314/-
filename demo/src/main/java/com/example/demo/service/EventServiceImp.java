@@ -24,7 +24,7 @@ public class EventServiceImp implements EventService {
     }
 
     @Override
-    public long addEvent(Event event){
+    public String addEvent(Event event){
         Event newEvent = new Event();
         newEvent.setType(event.getType());
         newEvent.setUser(event.getUser());

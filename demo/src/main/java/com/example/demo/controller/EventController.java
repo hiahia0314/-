@@ -17,7 +17,7 @@ public class EventController {
     private EventService eventService;
 
     @PostMapping("/event")
-    public Response<Long> addEvent(@RequestBody Event event){
+    public Response<String> addEvent(@RequestBody Event event){
         return Response.newSuccess(eventService.addEvent(event));
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User,String> {
     List<User> findByName(String username);
 
     Optional<User> findAllById(String id);
@@ -20,5 +20,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     Optional<User> findById(String id);
 
-    User deleteById(String id);
+    @Transactional
+    @Query("delete from User x where x.id = (?1)")
+    @Modifying
+    void deleteById(String id);
 }

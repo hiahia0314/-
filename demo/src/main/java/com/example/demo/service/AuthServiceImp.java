@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dataAccess.User;
 import com.example.demo.dataAccess.UserRepository;
 import com.example.demo.response.ResponseForAuth;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class AuthServiceImp implements AuthService{
     @Autowired
     UserRepository userRepository;
 
+    @Override
     public ResponseForAuth login(String id, String password){
         Optional<User> optionalUser = userRepository.findAllById(id);
         if(optionalUser.isEmpty()){
@@ -31,6 +33,8 @@ public class AuthServiceImp implements AuthService{
         }
     }
 
+    @Override
+    @Transactional
     public ResponseForAuth register(String id, String name, String password, int age, String e_mail){
         Optional<User> findById = userRepository.findAllById(id);
         if(findById.isPresent()) return ResponseForAuth.newFailure("This id has already been registered");

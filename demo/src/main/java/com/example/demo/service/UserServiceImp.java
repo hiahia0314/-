@@ -41,7 +41,7 @@ public class UserServiceImp implements UserService {
         userRepository.findById(id).orElseThrow( ()-> new IllegalArgumentException("id :" + id + " not found"));
         userRepository.deleteById(id);
 
-        if(eventRepository.existsByUser(id)){
+        if(eventRepository.existsById(id)){
             eventRepository.deleteAllByUser(id);
         }
     }
