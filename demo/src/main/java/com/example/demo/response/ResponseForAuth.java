@@ -3,6 +3,9 @@ package com.example.demo.response;
 public class ResponseForAuth {
     private String isSuccess;
     private int status;
+    /**
+     * 这个status有啥用啊，感觉你可以把这些都合并到Response里  见Response
+     */
     private String msg;
 
     public static ResponseForAuth newSuccess(){

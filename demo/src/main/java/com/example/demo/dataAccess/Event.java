@@ -14,7 +14,7 @@ public class Event {
     private String id;
 
     @Column(name = "user")
-    private long user;
+    private String user;
 
     @Column(name="title")
     private String title;
@@ -47,11 +47,11 @@ public class Event {
         this.id = id;
     }
 
-    public long getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(long user) {
+    public void setUser(String user) {
         this.user = user;
     }
 

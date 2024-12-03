@@ -18,17 +18,17 @@ public class EventController {
 
     @PostMapping("/event")
     public Response<String> addEvent(@RequestBody Event event){
-        return Response.newSuccess(eventService.addEvent(event));
+        return Response.newSuccess(eventService.addEvent(event),"success");
     }
 
-    @DeleteMapping("/event/{id}")
+    @DeleteMapping("/event/{Uid}")
     public void deleteEventByUid(@PathVariable long Uid){
         eventService.deleteEventByUid(Uid);
     }
 
-    @GetMapping("/eventDate/{id}")
-    public List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId( @PathVariable long id){
-        return eventService.getFormatEventsByUserId(id);
+    @GetMapping("/event/{UserId}")
+    public List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId( @PathVariable String UserId){
+        return eventService.getFormatEventsByUserId(UserId);
     }
 
 

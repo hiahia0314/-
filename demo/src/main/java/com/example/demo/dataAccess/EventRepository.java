@@ -14,14 +14,6 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event,Long> {
-    List<Event> findByUser(Long userId);
-
-    @Transactional
-    @Query("delete from Event x where x.user =(?1)")
-    @Modifying
-    void deleteAllByUser(Long userId);
-
-    boolean existsByUser(Long UserId);
 
     @Transactional
     @Query("delete from Event x where x.uid =(?1)")
@@ -31,14 +23,9 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     @Transactional
     @Query("SELECT distinct e.date FROM Event e WHERE e.user = (?1)")
     @Modifying
-    List<LocalDate> findDateByUser(Long UserId);
+    List<LocalDate> findDateByUser(String UserId);
 
-    List<Event> findByDateAndUser(LocalDate date, long user);
+    List<Event> findByDateAndUser(LocalDate date, String user);
 
-    boolean existsById(String id);
 
-    @Transactional
-    @Query("delete from Event x where x.id = (?1)")
-    @Modifying
-    void deleteAllByUser(String id);
 }

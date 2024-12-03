@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS event (
-    user INT,
+    user VARCHAR(255),
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) ,
     uid INT,

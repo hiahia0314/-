@@ -19,11 +19,6 @@ public class EventServiceImp implements EventService {
 
 
     @Override
-    public List<EventDTO> getEventsByUserId(long id){
-        return EventConverter.EventListConvert(eventRepository.findByUser(id));
-    }
-
-    @Override
     public String addEvent(Event event){
         Event newEvent = new Event();
         newEvent.setType(event.getType());
@@ -37,7 +32,7 @@ public class EventServiceImp implements EventService {
     }
 
     @Override
-    public List<LocalDate> findDateByUserId(long UserId){
+    public List<LocalDate> findDateByUserId(String UserId){
         return eventRepository.findDateByUser(UserId);
     }
     @Override
@@ -46,7 +41,7 @@ public class EventServiceImp implements EventService {
     }
 
     @Override
-    public List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId(long UserId){
+    public List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId(String UserId){
         List<ResponseForEvent<List<EventDTO>>> response = new ArrayList<>();
         List<LocalDate> dates = findDateByUserId(UserId);
         for(LocalDate date : dates){

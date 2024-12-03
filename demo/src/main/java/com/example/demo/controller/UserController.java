@@ -11,32 +11,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/friend/{id}")
-    public Response<UserDTO> getFriendById(@PathVariable String id) {
-
-        return Response.newSuccess(userService.getFriendById(id));
-    }
-    @GetMapping("/he")
-    public String getHe() {
-        return "he";
-    }
-
-
-    @PostMapping("/friend")
-    public Response<String> addNewFriend(@RequestBody UserDTO UserDTO) {
-        return Response.newSuccess(userService.addNewFriend(UserDTO));
-    }
-
-    @DeleteMapping("/friend/{id}")
-    public void deleteFriendById(@PathVariable String id) {
-        userService.deleteFriendById(id);
-    }
-
     @PutMapping("/friend/{id}")
-    public Response<UserDTO> updateFriendById(@PathVariable String id, @RequestParam(required = false) String name,
-                                              @RequestParam(required = false) String age) {
+    public Response<UserDTO> updateFriendById(@PathVariable String id, @RequestParam(required = false) String e_mail,
+                                              @RequestParam(required = false) int age,@RequestParam(required = false) String name) {
 
-        return Response.newSuccess(userService.updateFriendById(id,name,age));
+        return Response.newSuccess(userService.updateUserByUserId(id,e_mail,age,name),"success");
 
     }
 }

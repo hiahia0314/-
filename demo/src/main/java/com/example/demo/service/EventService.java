@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface EventService {
-     List<EventDTO> getEventsByUserId(long UserId);
 
      String addEvent(Event event);
 
@@ -16,7 +15,7 @@ public interface EventService {
 
      void deleteEventByUid(Long uid);
 
-     List<LocalDate> findDateByUserId(long UserId);
+     List<LocalDate> findDateByUserId(String User);
 
-     List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId(long UserId);
+     List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId(String User);
 }
