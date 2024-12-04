@@ -138,7 +138,7 @@ function MyCalendar() {
         //     alert("获取数据失败:" + msgObj.message);
         // }
 
-        setListData(msgObj);
+        setListData(msgObj.data);
       })
   }
 
