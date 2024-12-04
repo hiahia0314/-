@@ -2,6 +2,8 @@ package com.example.demo.dataAccess;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="friendships")
 public class Friendships {
@@ -10,11 +12,17 @@ public class Friendships {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="friend")
-    private long friend;
+    @Column(name="receiver")
+    private String receiver;
 
-    @Column(name = "user")
-    private long user;
+    @Column(name = "applicant")
+    private String applicant;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "time")
+    private LocalDate time;
 
     public long getId() {
         return id;
@@ -24,19 +32,35 @@ public class Friendships {
         this.id = id;
     }
 
-    public long getFriend() {
-        return friend;
+    public String getReceiver() {
+        return receiver;
     }
 
-    public void setFriend(long friend) {
-        this.friend = friend;
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
-    public long getUser() {
-        return user;
+    public String getApplicant() {
+        return applicant;
     }
 
-    public void setUser(long user) {
-        this.user = user;
+    public void setApplicant(String applicant) {
+        this.applicant = applicant;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDate getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDate time) {
+        this.time = time;
     }
 }

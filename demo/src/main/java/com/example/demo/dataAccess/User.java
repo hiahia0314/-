@@ -18,8 +18,7 @@ public class User {
     private String e_mail;
     @Column(name =  "password")
     private String password;
-    @Version
-    private long version;
+
 
     public String getId() {
         return id;
