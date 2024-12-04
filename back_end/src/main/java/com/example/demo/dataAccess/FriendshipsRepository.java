@@ -8,9 +8,9 @@ import java.util.Optional;
 
 @Repository
 public interface FriendshipsRepository extends JpaRepository<Friendships,Long> {
-    boolean existsByUserAndFriend(long user, long friend);
-    List<Friendships> findByUserOrFriend(long user,long friend);
+//    boolean existsByUserAndFriend(long user, long friend);
+//    List<Friendships> findByUserOrFriend(long user,long friend);
 
-    boolean existsByUserAndFriend(String userId, String friendId);
+//    boolean existsByUserAndFriend(String userId, String friendId);
     Optional<Friendships> findByApplicantAndReceiver(String applicantId, String receiverId);
 }

@@ -16,9 +16,10 @@ CREATE TABLE  IF NOT EXISTS user(
     e_mail VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS friendship(
+CREATE TABLE IF NOT EXISTS friendships(
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     applicant VARCHAR(255) NOT NULL ,
     receiver VARCHAR(255) NOT NULL ,
+    status VARCHAR(255) NOT NULL ,
     date date
 )

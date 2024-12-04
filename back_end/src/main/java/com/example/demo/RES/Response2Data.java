@@ -7,7 +7,4 @@ public class Response2Data<T> extends Response2{
         return data;
     }
 
-    public void setData(T data) {
-        this.data = data;
-    }
 }

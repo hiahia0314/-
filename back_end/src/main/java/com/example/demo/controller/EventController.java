@@ -18,18 +18,18 @@ public class EventController {
     private EventService eventService;
 
     @PostMapping("/event")
-    public Response2 addEvent(@RequestBody Event event){
+    public Response2<?> addEvent(@RequestBody Event event){
         return eventService.addEvent(event);
     }
 
     @DeleteMapping("/event/{Uid}")
-    public Response2 deleteEventByUid(@PathVariable long Uid){
+    public Response2<?> deleteEventByUid(@PathVariable long Uid){
         return eventService.deleteEventByUid(Uid);
 
     }
 
     @GetMapping("/event/{UserId}")
-    public Response2 getFormatEventsByUserId( @PathVariable String UserId){
+    public Response2<?> getFormatEventsByUserId( @PathVariable String UserId){
         return eventService.getFormatEventsByUserId(UserId);
     }
 

@@ -21,8 +21,8 @@ public class Friendships {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "time")
-    private LocalDate time;
+    @Column(name = "date")
+    private LocalDate date;
 
     public long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Friendships {
         this.status = status;
     }
 
-    public LocalDate getTime() {
-        return time;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setTime(LocalDate time) {
-        this.time = time;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
