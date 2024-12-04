@@ -18,7 +18,7 @@ public class ResponseForAuth {
 
     public static ResponseForAuth newFailure(String msg, int status){
         ResponseForAuth responseForAuth = new ResponseForAuth();
-        responseForAuth.setIsSuccess("fail");
+        responseForAuth.setIsSuccess("failure");
         responseForAuth.setMsg(msg);
         responseForAuth.setStatus(status);
         return responseForAuth;

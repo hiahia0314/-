@@ -22,8 +22,9 @@ public class EventController {
     }
 
     @DeleteMapping("/event/{Uid}")
-    public void deleteEventByUid(@PathVariable long Uid){
+    public Response<String> deleteEventByUid(@PathVariable long Uid){
         eventService.deleteEventByUid(Uid);
+        return Response.newSuccess(null,"success");
     }
 
     @GetMapping("/event/{UserId}")

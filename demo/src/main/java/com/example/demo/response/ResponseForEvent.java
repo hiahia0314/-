@@ -3,30 +3,30 @@ package com.example.demo.response;
 import java.time.LocalDate;
 
 public class ResponseForEvent <T>{
-    private LocalDate localDate;
-    private T data;
+    private LocalDate date;
+    private T events;
 
 
     public static <K>ResponseForEvent<K> newSuccess(K data,LocalDate localDate){
         ResponseForEvent<K> response = new ResponseForEvent<K>();
-        response.setData(data);
-        response.setLocalDate(localDate);
+        response.setEvents(data);
+        response.setDate(localDate);
         return response;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public T getData() {
-        return data;
+    public T getEvents() {
+        return events;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setEvents(T events) {
+        this.events = events;
     }
 }
