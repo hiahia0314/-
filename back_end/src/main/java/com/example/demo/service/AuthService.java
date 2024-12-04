@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.response.ResponseForAuth;
+import com.example.demo.RES.Response2;
+import com.example.demo.RES.Response2Auth;
+
 
 public interface AuthService {
 
-    ResponseForAuth login(String id, String password);
+    Response2 login(String id, String password);
 
-    ResponseForAuth register(String id, String name, String password, int age, String email);
+    Response2 register(String id, String name, String password, int age, String email);
 }

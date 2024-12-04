@@ -5,7 +5,7 @@ public class Response <T>{
     private T data;
     private String isSuccess;
     private String msg;
-    //errorMsg 可以改成Msg，success or fail都可以返回Msg
+
 
     public static <K>Response<K> newSuccess(K data,String msg){
         Response<K> response = new Response<K>();

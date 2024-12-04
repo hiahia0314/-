@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.RES.Response2;
+import com.example.demo.RES.Response2Auth;
 import com.example.demo.dataAccess.User;
 import com.example.demo.response.ResponseForAuth;
 import com.example.demo.service.AuthService;
@@ -19,20 +21,13 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody User user){
-        Map<String, Object> response = new HashMap<>();
-        ResponseForAuth responseForAuth = authService.login(user.getId(), user.getPassword());
-        response.put("isSuccess", responseForAuth.getIsSuccess());
-        response.put("msg", responseForAuth.getMsg());
-        return ResponseEntity.status(responseForAuth.getStatus()).body(response);
+    public Response2 login(@RequestBody User user) {
+        return authService.login(user.getId(), user.getPassword());
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, Object>> register(@RequestBody User user){
-        Map<String, Object> response = new HashMap<>();
-        ResponseForAuth responseForAuth = authService.register(user.getId(), user.getName(), user.getPassword(), user.getAge(), user.getE_mail());
-        response.put("isSuccess", responseForAuth.getIsSuccess());
-        response.put("msg", responseForAuth.getMsg());
-        return ResponseEntity.status(responseForAuth.getStatus()).body(response);
+    public Response2 register(@RequestBody User user) {
+        return authService.register(user.getId(), user.getName(), user.getPassword(), user.getAge(), user.getE_mail());
     }
+
 }

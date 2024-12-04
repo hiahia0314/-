@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.DTO.EventDTO;
+import com.example.demo.RES.Response2;
 import com.example.demo.response.Response;
 import com.example.demo.response.ResponseForEvent;
 import com.example.demo.dataAccess.Event;
@@ -17,18 +18,18 @@ public class EventController {
     private EventService eventService;
 
     @PostMapping("/event")
-    public Response<String> addEvent(@RequestBody Event event){
-        return Response.newSuccess(eventService.addEvent(event),"success");
+    public Response2 addEvent(@RequestBody Event event){
+        return eventService.addEvent(event);
     }
 
     @DeleteMapping("/event/{Uid}")
-    public Response<String> deleteEventByUid(@PathVariable long Uid){
-        eventService.deleteEventByUid(Uid);
-        return Response.newSuccess(null,"success");
+    public Response2 deleteEventByUid(@PathVariable long Uid){
+        return eventService.deleteEventByUid(Uid);
+
     }
 
     @GetMapping("/event/{UserId}")
-    public List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId( @PathVariable String UserId){
+    public Response2 getFormatEventsByUserId( @PathVariable String UserId){
         return eventService.getFormatEventsByUserId(UserId);
     }
 

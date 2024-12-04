@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.DTO.EventDTO;
+import com.example.demo.RES.Response2;
+import com.example.demo.RES.Response2Event;
 import com.example.demo.response.ResponseForEvent;
 import com.example.demo.converter.EventConverter;
 import com.example.demo.dataAccess.Event;
@@ -19,7 +21,7 @@ public class EventServiceImp implements EventService {
 
 
     @Override
-    public String addEvent(Event event){
+    public Response2 addEvent(Event event){
         Event newEvent = new Event();
         newEvent.setType(event.getType());
         newEvent.setUser(event.getUser());
@@ -28,7 +30,7 @@ public class EventServiceImp implements EventService {
         newEvent.setDate(event.getDate());
         newEvent.setUid(event.getUid());
         Event savedEvent = eventRepository.save(newEvent);
-        return savedEvent.getId();
+        return Response2.newSuccess("successfully");
     }
 
     @Override
@@ -36,20 +38,21 @@ public class EventServiceImp implements EventService {
         return eventRepository.findDateByUser(UserId);
     }
     @Override
-    public void deleteEventByUid(Long Uid){
+    public Response2 deleteEventByUid(Long Uid){
         eventRepository.deleteByUid(Uid);
+        return Response2.newSuccess("successfully");
     }
 
     @Override
-    public List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId(String UserId){
-        List<ResponseForEvent<List<EventDTO>>> response = new ArrayList<>();
+    public Response2 getFormatEventsByUserId(String UserId){
+        List<ResponseForEvent<List<EventDTO>>> list = new ArrayList<>();
         List<LocalDate> dates = findDateByUserId(UserId);
         for(LocalDate date : dates){
             List<EventDTO> eventDTOList =EventConverter.EventListConvert
                     (eventRepository.findByDateAndUser(date,UserId));
             ResponseForEvent<List<EventDTO>> responseForEvent = ResponseForEvent.newSuccess(eventDTOList,date);
-            response.add(responseForEvent);
+            list.add(responseForEvent);
         }
-        return response;
+        return Response2Event.newSuccess(list,"successfully");
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.DTO.EventDTO;
+import com.example.demo.RES.Response2;
 import com.example.demo.response.ResponseForEvent;
 import com.example.demo.dataAccess.Event;
 
@@ -9,13 +10,13 @@ import java.util.List;
 
 public interface EventService {
 
-     String addEvent(Event event);
+     Response2 addEvent(Event event);
 
     //long updateEvent(Event event,Long id);
 
-     void deleteEventByUid(Long uid);
+     Response2 deleteEventByUid(Long uid);
 
      List<LocalDate> findDateByUserId(String User);
 
-     List<ResponseForEvent<List<EventDTO>>> getFormatEventsByUserId(String User);
+     Response2 getFormatEventsByUserId(String User);
 }
