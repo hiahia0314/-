@@ -19,18 +19,6 @@ public class FriendshipsServiceImp implements FriendshipsService {
     @Autowired
     UserRepository UR;
 
-//    public String addFriendship(String userId, String friendId){
-//        if(FSR.existsByUserAndFriend(userId, friendId)){
-//            return null;
-//        }else {
-//            Friendships friendships = new Friendships();
-//            friendships.setReceiver(friendId);
-//            friendships.setApplicant(userId);
-//            Friendships a= FSR.save(friendships);
-//            return a.getReceiver();
-//        }
-//    }
-
     public Response2<?> addFriend(String applicantId, String receiverId, LocalDate date){
         Optional<User> receiver = UR.findById(receiverId);
         if(receiver.isEmpty()) return Response2.newFailure("This id doesn't exist", null);

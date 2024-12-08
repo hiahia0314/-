@@ -22,3 +22,4 @@ public class FriendshipController {
 //        return friendshipsServiceImp.getFriendshipsById(userId);
 //    }
 }
+

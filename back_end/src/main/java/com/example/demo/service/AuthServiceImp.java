@@ -1,10 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.RES.Response2;
-//import com.example.demo.RES.Response2Auth;
 import com.example.demo.dataAccess.User;
 import com.example.demo.dataAccess.UserRepository;
-import com.example.demo.response.ResponseForAuth;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
