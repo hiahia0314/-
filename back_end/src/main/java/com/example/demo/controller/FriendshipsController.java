@@ -27,5 +27,10 @@ public class FriendshipsController {
         return friendshipsServiceImp.getFriendsList(UserId);
     }
 
+    @PostMapping("/handleApply")
+    public Response2<?> handleApply(@RequestBody Friendships friendships){
+        return friendshipsServiceImp.handleApply(friendships.getReceiver(), friendships.getApplicant(), friendships.getStatus());
+    }
+
 }
 

@@ -88,4 +88,19 @@ public class FriendshipsServiceImp implements FriendshipsService {
         return Response2.newSuccess(friendDTOList);
     }
 
+    public Response2<?> handleApply(String userId, String applicantId, String isAccept){
+        Optional<Friendships> friendships_o = FSR.findByApplicantAndReceiver(applicantId, userId);
+        if(friendships_o.isEmpty()) return Response2.newFailure("This friendship doesn't exist", null);
+        Friendships friendships = friendships_o.get();
+        if(!friendships.getStatus().equals("pending")) return Response2.newFailure("This request has been" + isAccept + "ed", null);
+        if(isAccept.equals("accept")){
+            friendships.setStatus("accepted");
+            return Response2.newSuccess(null);
+        }
+        else{
+            friendships.setStatus("rejected");
+            return Response2.newSuccess(null);
+        }
+    }
+
 }
