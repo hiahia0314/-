@@ -11,5 +11,9 @@ public interface FriendshipsService {
 //    String addFriendship(String userId, String friendId);
     public Response2<?> addFriend(String applicantId, String receiverId, LocalDate time);
 //    List<Friendships> getFriendshipsById(Long userId);
+    Response2<?> deleteFriend(String applicantId, String receiverId);
+
+    Response2<?> getFriends(String applicantId);
+
 
 }

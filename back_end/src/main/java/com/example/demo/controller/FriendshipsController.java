@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class FriendshipController {
+public class FriendshipsController {
 
     @Autowired
     private FriendshipsServiceImp friendshipsServiceImp;
@@ -15,6 +15,16 @@ public class FriendshipController {
     @PostMapping("/addFriend")
     public Response2<?> addFriendships(@RequestBody Friendships friendships) {
         return friendshipsServiceImp.addFriend(friendships.getApplicant(), friendships.getReceiver(), friendships.getDate());
+    }
+
+    @DeleteMapping("deleteFriend")
+    public Response2<?> deleteFriendships(@RequestBody Friendships friendships) {
+        return friendshipsServiceImp.deleteFriend(friendships.getApplicant(), friendships.getReceiver());
+    }
+
+    @GetMapping("getFriend")
+    public Response2<?> getFriendships(@RequestBody Friendships friendships) {
+        return friendshipsServiceImp.getFriends(friendships.getApplicant());
     }
 
 //    @GetMapping("/friends")
