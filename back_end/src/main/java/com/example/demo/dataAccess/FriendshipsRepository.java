@@ -25,7 +25,7 @@ public interface FriendshipsRepository extends JpaRepository<Friendships,Long> {
     void deleteByApplicantAndReceiver(String applicantId, String receiverId);
 
     @Transactional
-    @Query("SELECT e.receiver FROM Friendships e where e.applicant=(?1) and e.status='accepted' ")
+    @Query("SELECT e FROM Friendships e where e.applicant=(?1) or e.receiver=(?1) and e.status='accepted' ")
     @Modifying
-    List<FriendDTO> findByApplicant(String applicantId);
+    List<Friendships> findByApplicantOrReceiver(String applicantId);
 }

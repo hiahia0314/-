@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,11 +64,28 @@ public class FriendshipsServiceImp implements FriendshipsService {
             return Response2.newSuccess(null);
         }
     }
-    public Response2<?> getFriends(String applicantId){
+    public Response2<?> getFriendsList(String UserId){
         //
-        List<FriendDTO> list=FSR.findByApplicant(applicantId);
+        List<Friendships> list=FSR.findByApplicantOrReceiver(UserId);
+        String FriendId="";
 
-        return Response2.newSuccess(list);
+        List<FriendDTO> friendDTOList = new ArrayList<>();
+        for (Friendships friendships : list) {
+            if(friendships.getReceiver().equals(UserId)){//此时好友是applicant
+                FriendId=friendships.getApplicant();
+            }else if(friendships.getApplicant().equals(UserId)){//此时好友是receiver
+                FriendId=friendships.getReceiver();
+            }
+            FriendDTO friendDTO = new FriendDTO();
+            friendDTO.setId(FriendId);
+            friendDTO.setName(UR.findById(UserId).get().getName());
+            friendDTO.setDate(friendships.getDate());
+            friendDTOList.add(friendDTO);
+        }
+
+
+
+        return Response2.newSuccess(friendDTOList);
     }
 
 }

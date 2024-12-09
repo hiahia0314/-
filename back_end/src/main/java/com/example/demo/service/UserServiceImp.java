@@ -34,4 +34,14 @@ public class UserServiceImp implements UserService {
             return Response2.newFailure("this id doesn't exist",null);
         }
     }
+
+    public String getNameById(String id){
+        Optional<User> userInDB = userRepository.findById(id);
+        if(userInDB.isPresent()){
+            return userInDB.get().getName();
+        }else {
+            return "asdasdasd";
+        }
+    }
+
 }

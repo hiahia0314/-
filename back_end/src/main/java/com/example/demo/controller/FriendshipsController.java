@@ -22,14 +22,10 @@ public class FriendshipsController {
         return friendshipsServiceImp.deleteFriend(friendships.getApplicant(), friendships.getReceiver());
     }
 
-    @GetMapping("getFriend")
-    public Response2<?> getFriendships(@RequestBody Friendships friendships) {
-        return friendshipsServiceImp.getFriends(friendships.getApplicant());
+    @GetMapping("getFriend/{UserId}")
+    public Response2<?> getFriendships(@PathVariable String UserId) {
+        return friendshipsServiceImp.getFriendsList(UserId);
     }
 
-//    @GetMapping("/friends")
-//    public List<Friendships> getFriendships(@RequestParam long userId) {
-//        return friendshipsServiceImp.getFriendshipsById(userId);
-//    }
 }
 

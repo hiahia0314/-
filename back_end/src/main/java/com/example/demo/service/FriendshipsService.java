@@ -13,7 +13,7 @@ public interface FriendshipsService {
 //    List<Friendships> getFriendshipsById(Long userId);
     Response2<?> deleteFriend(String applicantId, String receiverId);
 
-    Response2<?> getFriends(String applicantId);
+    Response2<?> getFriendsList(String UserId);
 
 
 }
