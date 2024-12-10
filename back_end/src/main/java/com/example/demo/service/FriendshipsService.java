@@ -15,5 +15,5 @@ public interface FriendshipsService {
 
     Response2<?> getFriendsList(String UserId);
 
-
+    Response2<?> getFriendRequests(String UseId);
 }

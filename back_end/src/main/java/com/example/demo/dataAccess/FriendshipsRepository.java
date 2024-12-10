@@ -18,7 +18,6 @@ public interface FriendshipsRepository extends JpaRepository<Friendships,Long> {
 //    boolean existsByUserAndFriend(String userId, String friendId);
     Optional<Friendships> findByApplicantAndReceiver(String applicantId, String receiverId);
 
-
     @Transactional
     @Query("delete from Friendships x where x.applicant=(?1) and x.receiver=(?2)")
     @Modifying
@@ -28,4 +27,6 @@ public interface FriendshipsRepository extends JpaRepository<Friendships,Long> {
     @Query("SELECT e FROM Friendships e where e.applicant=(?1) or e.receiver=(?1) and e.status='accepted' ")
     @Modifying
     List<Friendships> findByApplicantOrReceiver(String applicantId);
+
+    List<Friendships> findByReceiver(String Receiver);
 }

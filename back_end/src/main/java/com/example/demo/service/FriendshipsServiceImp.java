@@ -82,11 +82,24 @@ public class FriendshipsServiceImp implements FriendshipsService {
             friendDTO.setDate(friendships.getDate());
             friendDTOList.add(friendDTO);
         }
-
-
-
         return Response2.newSuccess(friendDTOList);
     }
+
+
+    public Response2<?> getFriendRequests(String UseId){
+        List<Friendships> FriendshipsList=FSR.findByReceiver(UseId);
+        List<FriendDTO> FriendDTOList = new ArrayList<>();
+
+        for (Friendships friendships : FriendshipsList) {//获取申请者的信息
+            FriendDTO FriendDTO = new FriendDTO();
+            FriendDTO.setId(friendships.getApplicant());
+            FriendDTO.setName(UR.findById(friendships.getApplicant()).get().getName());
+            FriendDTO.setDate(friendships.getDate());
+            FriendDTOList.add(FriendDTO);
+        }
+        return Response2.newSuccess(FriendDTOList);
+    }
+
 
     public Response2<?> handleApply(String userId, String applicantId, String isAccept){
         Optional<Friendships> friendships_o = FSR.findByApplicantAndReceiver(applicantId, userId);

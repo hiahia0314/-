@@ -35,13 +35,5 @@ public class UserServiceImp implements UserService {
         }
     }
 
-    public String getNameById(String id){
-        Optional<User> userInDB = userRepository.findById(id);
-        if(userInDB.isPresent()){
-            return userInDB.get().getName();
-        }else {
-            return "asdasdasd";
-        }
-    }
 
 }

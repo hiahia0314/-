@@ -27,6 +27,11 @@ public class FriendshipsController {
         return friendshipsServiceImp.getFriendsList(UserId);
     }
 
+    @GetMapping("getFriendRequest/{UserId}")
+    public Response2<?> getFriendRequest(@PathVariable String UserId) {
+        return friendshipsServiceImp.getFriendRequests(UserId);
+    }
+
     @PostMapping("/handleApply")
     public Response2<?> handleApply(@RequestBody Friendships friendships){
         return friendshipsServiceImp.handleApply(friendships.getReceiver(), friendships.getApplicant(), friendships.getStatus());
