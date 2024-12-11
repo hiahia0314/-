@@ -3,11 +3,11 @@ package com.example.demo.DTO;
 import java.time.LocalDate;
 
 public class FriendDTO {
-    private String id;
+    private String account;
 
     private String name;
 
-    private LocalDate date;
+    private LocalDate addTime;
 
     public String getName() {
         return name;
@@ -17,19 +17,19 @@ public class FriendDTO {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getAddTime() {
+        return addTime;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setAddTime(LocalDate addTime) {
+        this.addTime = addTime;
     }
 
-    public String getId() {
-        return id;
+    public String getAccount() {
+        return account;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

@@ -21,9 +21,9 @@ function LoginPage({ isLogin, setIsLogin }) {
                 let jsonObj = data
                 console.log("后端返回msg", jsonObj)
 
-                if (jsonObj.isSuccess == "success") {
+                if (jsonObj.isSuccess === "success") {
                     //登录成功，将用户信息保存在本地
-                    localStorage.setItem("userInfo", JSON.stringify(user));
+                    localStorage.setItem("userInfo", JSON.stringify({ ...user, "name": jsonObj.data.name }));
                     setIsLogin(true);
                 } else {
                     //登录失败
@@ -47,7 +47,7 @@ function LoginPage({ isLogin, setIsLogin }) {
                 let jsonObj = data;
                 console.log("后端返回msg", jsonObj)
 
-                if (jsonObj.isSuccess == "success") {
+                if (jsonObj.isSuccess === "success") {
                     //注册成功
                     localStorage.setItem("userInfo", JSON.stringify(user));
                     setIsLogin(true);

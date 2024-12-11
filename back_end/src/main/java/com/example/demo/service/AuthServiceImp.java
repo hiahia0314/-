@@ -28,7 +28,7 @@ public class AuthServiceImp implements AuthService{
                 return Response2.newFailure("Password doesn't match", null);
             }
             else{
-                return Response2.newSuccess(null);
+                return Response2.newSuccess(user);
             }
         }
     }
