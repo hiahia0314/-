@@ -1,4 +1,4 @@
-import { Badge, Calendar, Drawer, Popconfirm, Table, Button, Form, Input, Radio } from "antd"
+import { Badge, Calendar, Drawer, Popconfirm, Table, Button, Form, Input, Radio, Checkbox } from "antd"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -119,8 +119,7 @@ function MyCalendar() {
       alert('请先登录!');
       navigate('/settings', { replace: true });
     }
-  }, [navigate])
-
+  }, [navigate]);
 
 
   //fetch listData
@@ -179,7 +178,7 @@ function MyCalendar() {
       <ul className="event-list">
         {listData.map((item) => (
           <li key={item.uid}>
-            <Badge status={item.type} text={item.title} />
+            <Badge status={item.type === 'unPublic' ? 'default' : item.type} text={item.title} />
           </li>
         ))}
       </ul>
@@ -271,6 +270,12 @@ function MyCalendar() {
 
   //表格中的确认添加按钮的回调函数
   const handleAdd = (values) => {
+    if (values.remember !== true) {
+      values.type = 'unPublic';
+    }
+    //删除values的remember属性
+    delete values.remember;
+
     const newEvent = { ...values, uid: new Date().getTime() };
     console.log(newEvent);
     const newEvents = [...events, newEvent];
@@ -289,6 +294,7 @@ function MyCalendar() {
         return item;
       })
     }
+
     const user = JSON.parse(localStorage.getItem('userInfo'));
     //fetch 数据库添加该event
     fetch(SERVER_URL + "/event", {
@@ -399,6 +405,10 @@ function MyCalendar() {
               ]}
             >
               <Input.TextArea showCount maxLength={200} autoSize={{ minRows: 4, maxRows: 10 }} />
+            </Form.Item>
+
+            <Form.Item name="remember" valuePropName="checked" label={null}>
+              <Checkbox>是否公开</Checkbox>
             </Form.Item>
 
             <Form.Item label={null}>

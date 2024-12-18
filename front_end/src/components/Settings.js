@@ -21,7 +21,7 @@ var items = [
     children: '',
   },
   {
-    label: '好友操作',
+    label: '操作',
     span: "filled",
     // span will be 3 and warning for span is not align to the end
     children: '',
@@ -29,54 +29,54 @@ var items = [
 ];
 
 function Settings() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [item, setItem] = useState(items);
+    const [isLogin, setIsLogin] = useState(false);
+    const [item, setItem] = useState(items);
 
-  useEffect(() => {
-    //获取本地存储的用户信息
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    console.log(userInfo);
-    if (userInfo) {
-      setIsLogin(true);
-      items = [
-        {
-          label: '账号',
-          children: userInfo.account,
-        },
-        {
-          label: '密码',
-          span: 'filled',
-          children: <Input.Password value={userInfo.password} disabled />,
-        },
-        {
-          label: '昵称',
-          children: userInfo.name
-        },
-        {
-          label: '操作',
-          span: 'filled',
-          children: <Button danger onClick={logout}>退出登录</Button>
-        },
-      ];
-      setItem(items);
-    }
-  }, [isLogin])
-
-  const logout = () => {
-    //清除本地存储的用户信息
-    localStorage.removeItem('userInfo');
-    setIsLogin(false);
-  }
-
-  return (
-    <div className="settings">
-      {!isLogin ?
-        <LoginPage isLogin={isLogin} setIsLogin={setIsLogin} />
-        :
-        <Descriptions bordered title="账号信息" items={item} />
+    useEffect(() => {
+      //获取本地存储的用户信息
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      console.log(userInfo);
+      if(userInfo) {
+        setIsLogin(true);
+        items = [
+          {
+            label: '账号',
+            children: userInfo.account,
+          },
+          {
+            label: '密码',
+            span: 'filled',
+            children: <Input.Password value={userInfo.password} disabled />,
+          },
+          {
+            label: '昵称',
+            children: userInfo.name
+          },
+          {
+            label: '操作',
+            span: 'filled',
+            children: <Button danger onClick={logout}>退出登录</Button>
+          },
+        ];
+        setItem(items);
       }
-    </div>
-  )
-}
+    },[isLogin])
 
-export default Settings
+    const logout = () => {
+      //清除本地存储的用户信息
+      localStorage.removeItem('userInfo');
+      setIsLogin(false);
+    }
+
+    return (
+      <div className="settings">
+        {!isLogin ? 
+          <LoginPage isLogin={isLogin} setIsLogin={setIsLogin} />
+          :
+          <Descriptions bordered title="账号信息" items={item} />
+        }
+      </div>
+    )
+  }
+  
+  export default Settings
