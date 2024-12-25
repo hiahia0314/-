@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { useNavigate } from "react-router-dom"
 
-const SERVER_URL = 'http://127.0.0.1:8080';
+const SERVER_URL = 'http://121.43.189.243:8085';
 
 const FRIENDLIST = [
   {
@@ -313,7 +313,15 @@ function Square() {
         <Drawer
           closable
           destroyOnClose
-          title={<span> {"好友列表"} <Button type='link' style={{position: 'absolute', right: '10px'}} onClick={()=>setOpenFriendRequest(true)} >查看申请</Button> </span>}
+          title={<span> {"好友列表"} 
+              { friendRequest.length === 0 ?
+                <Button type='link' onClick={()=>setOpenFriendRequest(true)} >查看申请</Button>
+                :
+                <Badge count={friendRequest.length} style={{position: 'absolute', right: '10px'}} >
+                  <Button type='link' onClick={()=>setOpenFriendRequest(true)} >查看申请</Button>
+                </Badge>
+              }
+            </span>}
           placement="right"
           open={openFriend}
           loading={friendLoading}

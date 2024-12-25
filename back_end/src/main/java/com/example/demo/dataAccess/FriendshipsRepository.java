@@ -17,7 +17,6 @@ public interface FriendshipsRepository extends JpaRepository<Friendships,Long> {
 
 //    boolean existsByUserAndFriend(String userId, String friendId);
     Optional<Friendships> findByApplicantAndReceiver(String applicantId, String receiverId);
-
     @Transactional
     @Query("delete from Friendships x where x.applicant=(?1) and x.receiver=(?2)")
     @Modifying

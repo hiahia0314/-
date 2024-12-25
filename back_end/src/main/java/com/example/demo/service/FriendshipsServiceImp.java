@@ -27,6 +27,8 @@ public class FriendshipsServiceImp implements FriendshipsService {
         Optional<User> receiver = UR.findById(receiverId);
         if(receiver.isEmpty()) return Response2.newFailure("This id doesn't exist", null);
         Optional<Friendships> friendships_o = FSR.findByApplicantAndReceiver(applicantId, receiverId);
+        if(friendships_o.isEmpty()) friendships_o = FSR.findByApplicantAndReceiver(receiverId, applicantId);
+
         if(friendships_o.isPresent()){
             String status = friendships_o.get().getStatus();
             switch (status) {

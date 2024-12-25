@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 import './MyCalendar.css'
 
-const SERVER_URL = 'http://127.0.0.1:8080';
+const SERVER_URL = 'http://121.43.189.243:8085';
 
 
 /*  
@@ -20,13 +20,13 @@ let LISTDATA = [
     date: '2024-12-20',
     events: [
       {
-        uid: new Date().getTime() - 1,
+        uid: new Date().getTime()-1,
         type: 'warning',
         title: 'Meeting',
         description: 'This is warning event.',
       },
       {
-        uid: new Date().getTime() - 2,
+        uid: new Date().getTime()-2,
         type: 'success',
         title: 'Holiday',
         description: 'This is usual event.',
@@ -36,20 +36,20 @@ let LISTDATA = [
   {
     date: '2024-12-24',
     events: [
-      {
-        uid: new Date().getTime() - 3,
+      { 
+        uid: new Date().getTime()-3,
         type: 'warning',
         title: 'Meeting',
         description: 'This is warning event.',
       },
       {
-        uid: new Date().getTime() - 4,
+        uid: new Date().getTime()-4,
         type: 'success',
         title: 'Holiday',
         description: 'This is usual event.',
       },
       {
-        uid: new Date().getTime() - 5,
+        uid: new Date().getTime()-5,
         type: 'error',
         title: 'Working',
         description: 'This is error event.',
@@ -60,37 +60,37 @@ let LISTDATA = [
     date: '2024-12-28',
     events: [
       {
-        uid: new Date().getTime() - 6,
+        uid: new Date().getTime()-6,
         type: 'warning',
         title: 'Meeting',
         description: 'This is warning event',
       },
       {
-        uid: new Date().getTime() - 7,
+        uid: new Date().getTime()-7,
         type: 'success',
         title: 'Holiday',
         description: 'This is very long usual event......',
       },
-      {
-        uid: new Date().getTime() - 8,
+      { 
+        uid: new Date().getTime()-8,
         type: 'error',
         title: 'Working',
         description: 'This is error event 1.',
       },
       {
-        uid: new Date().getTime() - 9,
+        uid: new Date().getTime()-9,
         type: 'error',
         title: 'Working',
         description: 'This is error event 2.',
       },
-      {
-        uid: new Date().getTime() - 10,
+      { 
+        uid: new Date().getTime()-10,
         type: 'error',
         title: 'Working',
         description: 'This is error event 3.',
       },
       {
-        uid: new Date().getTime() - 11,
+        uid: new Date().getTime()-11,
         type: 'error',
         title: 'Working',
         description: 'This is error event 4.',
@@ -103,7 +103,7 @@ function MyCalendar() {
   const [selectDate, setSelectDate] = useState('');
   const [openDate, setOpenDate] = useState(false);//一级抽屉
   const [openEventAdder, setOpenEventAdder] = useState(false);//二级抽屉
-  const [listData, setListData] = useState(LISTDATA);//默认为静态的测试数据
+  const [listData, setListData] = useState([]);//默认为静态的测试数据
   const [events, setEvents] = useState([]);
 
   const [form] = Form.useForm();
@@ -111,43 +111,43 @@ function MyCalendar() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
-    if (user) {
+    if(user){
       //fetch listData数据库数据
       fetchData(user);
-    } else {
+    }else{
       //跳转到settings页面
       alert('请先登录!');
-      navigate('/settings', { replace: true });
+      navigate('/settings',{ replace: true });
     }
-  }, [navigate]);
+  },[navigate]);
 
 
   //fetch listData
   const fetchData = async (user) => {
-    fetch(`${SERVER_URL}/event/${user.account}`, {
+    fetch(`${SERVER_URL}/event/${user.account}`,{
       method: 'GET',
-      headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' },
+      headers: {"Content-Type": "application/json",'Access-Control-Allow-Origin': '*'},
     })
-      .then(res => res.json())
-      .then(data => {
-        let msgObj = data;
-        console.log("获取数据", msgObj);
+    .then(res => res.json())
+    .then(data => {
+      let msgObj = data;
+      console.log("获取数据",msgObj);
 
-        if (msgObj.isSuccess === 'success') {
-          const newListData = msgObj.data.map(item => {
-            return item;
-          })
-          setListData(newListData);
-        } else {
-          alert("获取数据失败:" + msgObj.msg);
-        }
-      })
+      if(msgObj.isSuccess === 'success'){
+        const newListData = msgObj.data.map(item => {
+          return item;
+        })
+        setListData(newListData);
+      }else{
+        alert("获取数据失败:" + msgObj.msg);
+      }
+    })
   }
 
   const getEventData = (value) => {
     let eventData = [];
     //遍历LISTDATA 找到对应日期的数据
-    for (let i = 0; i < listData.length; i++) {
+    for(let i=0; i<listData.length; i++) {
       if (listData[i].date === value.format('YYYY-MM-DD')) {
         eventData = listData[i].events;
         break;
@@ -155,7 +155,7 @@ function MyCalendar() {
     }
     return eventData || [];
   };
-
+  
   const getMonthData = (value) => {
     if (value.month() === 8) {
       return 1394;
@@ -178,7 +178,7 @@ function MyCalendar() {
       <ul className="event-list">
         {listData.map((item) => (
           <li key={item.uid}>
-            <Badge status={item.type === 'unPublic' ? 'default' : item.type} text={item.title} />
+            <Badge status={item.type==='unPublic'?'default':item.type} text={item.title} />
           </li>
         ))}
       </ul>
@@ -193,7 +193,7 @@ function MyCalendar() {
   };
 
   //点击某日期的回调函数
-  const onSelect = (value, { source }) => {
+  const onSelect = (value , {source}) => {
     let dateValue = value.format('YYYY-MM-DD');
     console.log(dateValue);
     setSelectDate(dateValue);
@@ -204,7 +204,7 @@ function MyCalendar() {
     console.log(d);
     if (d) {
       setEvents(d.events);
-    } else {
+    }else{
       setEvents([]);
     }
   }
@@ -248,42 +248,42 @@ function MyCalendar() {
     });
     //fetch 数据库删除该event
     fetch(`${SERVER_URL}/event/${record.uid}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' },
+        method: "DELETE",
+        headers: {"Content-Type": "application/json",'Access-Control-Allow-Origin': '*'},
     })
-      .then(res => res.json())
-      .then(data => {
+    .then(res => res.json())
+    .then(data => {
         let jsonObj = data;
-        console.log("后端返回msg", jsonObj)
+        console.log("后端返回msg",jsonObj)
 
-        if (jsonObj.isSuccess === "success") {
-          //删除成功
-          console.log("删除成功");
-          setEvents(newEvents);
-          setListData(newListData);
-        } else {
-          //删除失败
-          alert("删除失败:" + jsonObj.msg);
+        if(jsonObj.isSuccess === "success"){
+            //删除成功
+            console.log("删除成功");
+            setEvents(newEvents);
+            setListData(newListData);
+        }else{
+            //删除失败
+            alert("删除失败:" + jsonObj.msg);
         }
       })
   };
 
   //表格中的确认添加按钮的回调函数
   const handleAdd = (values) => {
-    if (values.remember !== true) {
+    if(values.remember !== true){
       values.type = 'unPublic';
     }
     //删除values的remember属性
     delete values.remember;
 
-    const newEvent = { ...values, uid: new Date().getTime() };
+    const newEvent = {...values, uid: new Date().getTime()};
     console.log(newEvent);
     const newEvents = [...events, newEvent];
     //如果listData中没有该日期，则添加；有则更新
     let newListData = [];
     if (!listData.find((item) => item.date === selectDate)) {
       newListData = [...listData, { date: selectDate, events: newEvents }];
-    } else {
+    }else{
       newListData = listData.map((item) => {
         if (item.date === selectDate) {
           return {
@@ -294,30 +294,30 @@ function MyCalendar() {
         return item;
       })
     }
-
+    
     const user = JSON.parse(localStorage.getItem('userInfo'));
     //fetch 数据库添加该event
     fetch(SERVER_URL + "/event", {
-      method: "POST",
-      body: JSON.stringify({ ...newEvent, "user": user.account, "date": selectDate }),
-      headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' },
+        method: "POST",
+        body: JSON.stringify({...newEvent, "user": user.account, "date": selectDate}),
+        headers: {"Content-Type": "application/json",'Access-Control-Allow-Origin': '*'},
     })
-      .then(res => res.json())
-      .then(data => {
+    .then(res => res.json())
+    .then(data => {
         let jsonObj = data;
-        console.log("后端返回msg", jsonObj)
+        console.log("后端返回msg",jsonObj)
 
-        if (jsonObj.isSuccess === "success") {
-          //添加成功
-          console.log("添加成功");
-          setEvents(newEvents);
-          setListData(newListData);
-        } else {
-          //删除失败
-          alert("添加失败:" + jsonObj.msg);
+        if(jsonObj.isSuccess === "success"){
+            //添加成功
+            console.log("添加成功");
+            setEvents(newEvents);
+            setListData(newListData);
+        }else{
+            //删除失败
+            alert("添加失败:" + jsonObj.msg);
         }
       })
-
+    
     //清空Form并关闭二级Drawer
     form.resetFields();
     setOpenEventAdder(false);
@@ -327,99 +327,99 @@ function MyCalendar() {
     <div>
       <Calendar cellRender={cellRender} onSelect={onSelect} />
 
-      <Drawer title={selectDate ? selectDate : ""} width={720} closable={true} open={openDate} onClose={() => setOpenDate(false)}>
-
-        <Button
-          onClick={() => setOpenEventAdder(true)}
+        <Drawer title={selectDate ? selectDate : ""} width={720} closable={true} open={openDate} onClose={()=> setOpenDate(false)}>
+          
+          <Button
+          onClick={()=> setOpenEventAdder(true)}
           type="primary"
           style={{
             marginBottom: 16,
           }}>添加事件</Button>
 
-        <Table
-          rowKey="key"
-          bordered
-          columns={COLOMNS}
-          dataSource={events.map((item, index) => ({ ...item, key: index }))}
-        />
+          <Table 
+            rowKey="key"
+            bordered
+            columns={COLOMNS}
+            dataSource={events.map((item, index) => ({...item, key: index}))}
+          />
 
-        <Drawer title={'添加新事件'} width={520} closable={true} open={openEventAdder} onClose={() => setOpenEventAdder(false)}>
-          <Form
-            form={form}
-            name="newEvent"
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
-            style={{
-              transform: 'translateX(-20%)',
-            }}
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={handleAdd}
-            autoComplete="off"
-          >
-            <Form.Item
-              label="类型"
-              name="type"
-              rules={[
-                {
-                  required: true,
-                  message: '请选择类型!',
-                },
-              ]}
-            >
-              <Radio.Group defaultValue="a" buttonStyle="solid" size="small">
-                <Radio.Button value="success"><Badge status="success" text="已完成" /></Radio.Button>
-                <Radio.Button value="error"><Badge status="error" text="错误" /></Radio.Button>
-                <Radio.Button value="default"><Badge status="default" text="默认" /></Radio.Button>
-                <Radio.Button value="processing"><Badge status="processing" text="进行中" /></Radio.Button>
-                <Radio.Button value="warning"><Badge status="warning" text="警告" /></Radio.Button>
-              </Radio.Group>
-            </Form.Item>
+          <Drawer title={'添加新事件'} width={520} closable={true} open={openEventAdder} onClose={()=> setOpenEventAdder(false)}>
+            <Form
+              form={form}
+              name="newEvent"
+              labelCol={{
+                span: 8,
+              }}
+              wrapperCol={{
+                span: 16,
+              }}
+              style={{
+                transform: 'translateX(-20%)',
+              }}
+              initialValues={{
+                remember: true,
+              }}
+              onFinish={handleAdd}
+              autoComplete="off"
+            > 
+              <Form.Item
+                label="类型"
+                name="type"
+                rules={[
+                  {
+                    required: true,
+                    message: '请选择类型!',
+                  },
+                ]}
+              >
+                <Radio.Group defaultValue="a" buttonStyle="solid" size="small">
+                  <Radio.Button value="success"><Badge status="success" text="已完成" /></Radio.Button>
+                  <Radio.Button value="error"><Badge status="error" text="错误" /></Radio.Button>
+                  <Radio.Button value="default"><Badge status="default" text="默认" /></Radio.Button>
+                  <Radio.Button value="processing"><Badge status="processing" text="进行中" /></Radio.Button>
+                  <Radio.Button value="warning"><Badge status="warning" text="警告" /></Radio.Button>
+                </Radio.Group>
+              </Form.Item>
 
-            <Form.Item
-              label="标题"
-              name="title"
-              rules={[
-                {
-                  required: true,
-                  message: '请输入标题!',
-                },
-              ]}
-            >
-              <Input showCount maxLength={10} />
-            </Form.Item>
+              <Form.Item
+                label="标题"
+                name="title"
+                rules={[
+                  {
+                    required: true,
+                    message: '请输入标题!',
+                  },
+                ]}
+              >
+                <Input showCount maxLength={10} />
+              </Form.Item>
 
-            <Form.Item
-              label="内容"
-              name="description"
-              rules={[
-                {
-                  required: true,
-                  message: '请输入内容!',
-                },
-              ]}
-            >
-              <Input.TextArea showCount maxLength={200} autoSize={{ minRows: 4, maxRows: 10 }} />
-            </Form.Item>
+              <Form.Item
+                label="内容"
+                name="description"
+                rules={[
+                  {
+                    required: true,
+                    message: '请输入内容!',
+                  },
+                ]}
+              >
+                <Input.TextArea showCount maxLength={200} autoSize={{minRows: 4, maxRows: 10}} />
+              </Form.Item>
 
-            <Form.Item name="remember" valuePropName="checked" label={null}>
-              <Checkbox>是否公开</Checkbox>
-            </Form.Item>
+              <Form.Item name="remember" valuePropName="checked" label={null}>
+                <Checkbox>是否公开</Checkbox>
+              </Form.Item>
 
-            <Form.Item label={null}>
-              <Button type="primary" htmlType="submit">
-                提交
-              </Button>
-            </Form.Item>
-          </Form>
+              <Form.Item label={null}>
+                <Button type="primary" htmlType="submit">
+                  提交
+                </Button>
+              </Form.Item>
+            </Form>
+          </Drawer>
+
         </Drawer>
-
-      </Drawer>
     </div>
   );
 }

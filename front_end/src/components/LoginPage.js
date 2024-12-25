@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, Typography, Checkbox } from 'antd';
 
 const { Title } = Typography;
-const SERVER_URL = 'http://127.0.0.1:8080';
+const SERVER_URL = 'http://121.43.189.243:8085';
  
 function LoginPage({isLogin, setIsLogin}) {
   const [user, setUser] = useState({account: '', password: '', name: ''});
